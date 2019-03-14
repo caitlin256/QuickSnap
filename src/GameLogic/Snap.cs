@@ -150,28 +150,29 @@ namespace CardGames.GameLogic
 				return 0;
 		}
 
-		/// <summary>
-		/// The player hit the top of the cards "snap"! :)
-		/// Check if the top two cards' ranks match.
-		/// </summary>
-		public void PlayerHit (int player)
-		{
-			//TODO: consider deducting score for miss hits???
-			if ( player >= 0 && player < _score.Length &&  	// its a valid player
-				 IsStarted && 								// and the game is started
-				 _topCards [0] != null && _topCards [0].Rank == _topCards [1].Rank) // and its a match
-			{
-				_score[player]++;
-				//TODO: consider playing a sound here...
-			}
+        /// <summary>
+        /// The player hit the top of the cards "snap"! :)
+        /// Check if the top two cards' ranks match.
+        /// </summary>
 
-			// stop the game...
-			_started = false;
+        public void PlayerHit(int player)
+        {
+            //TODO: consider deducting score for miss hits???
+            if (player >= 0 && player < _score.Length &&   // its a valid player
+                 IsStarted &&                               // and the game is started
+                 _topCards[0] != null && _topCards[0].Rank == _topCards[1].Rank) // and its a match
+            {
+                _score[player]++;
+                //TODO: consider playing a sound here...
+            }
+
+            // stop the game...
+            _started = false;
             _gameTimer.Stop();
         }
-	
-		#region Snap Game Unit Tests
-		#if DEBUG
+
+        #region Snap Game Unit Tests
+        #if DEBUG
 
 		public class SnapTests
 		{
@@ -199,8 +200,8 @@ namespace CardGames.GameLogic
 			}
 		}
 
-		#endif 
-		#endregion
-	}
+#endif
+        #endregion
+    }
 }
 
