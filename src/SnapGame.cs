@@ -14,21 +14,42 @@ namespace CardGames
             SwinGame.LoadFontNamed("GameFont", "Chunkfive.otf", 12);
         }
 
-		/// <summary>
-		/// Respond to the user input -- with requests affecting myGame
-		/// </summary>
-		/// <param name="myGame">The game object to update in response to events.</param>
-		private static void HandleUserInput(Snap myGame)
-		{
-			//Fetch the next batch of UI interaction
-			SwinGame.ProcessEvents();
+        /// <summary>
+        /// Respond to the user input -- with requests affecting myGame
+        /// </summary>
+        /// <param name="myGame">The game object to update in response to events.</param>
+        private static void HandleUserInput(Snap myGame)
+        {
+            //Fetch the next batch of UI interaction
+            SwinGame.ProcessEvents();
 
 			if (SwinGame.KeyTyped (KeyCode.vk_SPACE))
 			{
                 myGame.Start();
             }
-		}
+			
+			if (SwinGame.KeyTyped(KeyCode.vk_SPACE))
+            {
+                myGame.FlipNextCard();
+            }
 
+            if (myGame.IsStarted)
+            {
+
+                if (SwinGame.KeyTyped(KeyCode.vk_LSHIFT) && SwinGame.KeyTyped(KeyCode.vk_RSHIFT))
+                {
+                    //TODO: add sound effects
+                }
+                else if (SwinGame.KeyTyped(KeyCode.vk_LSHIFT))
+                {
+                    myGame.PlayerHit(0);
+                }
+                else if (SwinGame.KeyTyped(KeyCode.vk_RSHIFT))
+                {
+                    myGame.PlayerHit(1);
+                }
+            }
+		}
 		/// <summary>
 		/// Draws the game to the Window.
 		/// </summary>
