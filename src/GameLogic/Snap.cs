@@ -77,23 +77,6 @@ namespace CardGames.GameLogic
 		/// Indicates if the game has already been started. You can only start the game once.
 		/// </summary>
 		/// <value><c>true</c> if this instance is started; otherwise, <c>false</c>.</value>
-		public void Shuffle()
-        {
-            for (int i = 0; i < 52; i++)
-            {
-                if (_cards[i].FaceUp) _cards[i].TurnOver();
-            }
-            Random rnd = new Random();
-            // for each card (no need to shuffle last card)
-            for (int i = 0; i < 52 - 1; i++)
-            {
-                // pick a random index
-                int rndIdx = rnd.Next(52 - i);
-                Card temp = _cards[i];
-                _cards[i] = _cards[i + rndIdx]; _cards[i + rndIdx] = temp;
-            }
-            _topCard = 0;
-        }
 		
 		public bool IsStarted
 		{
